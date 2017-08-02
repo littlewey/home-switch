@@ -28,10 +28,10 @@ driver.get(url_status)
 statusHtml = driver.page_source
 soup = BeautifulSoup(statusHtml,"html.parser")
 
-light1=soup.find(id="ctl00_ContentPlaceHolder1_Repeater1_ctl01_label3").text
-light2=soup.find(id="ctl00_ContentPlaceHolder1_Repeater1_ctl02_label3").text
-light3=soup.find(id="ctl00_ContentPlaceHolder1_Repeater1_ctl03_label3").text
-light4=soup.find(id="ctl00_ContentPlaceHolder1_Repeater1_ctl04_label3").text
+light1_Powerstate = soup.find(id="ctl00_ContentPlaceHolder1_Repeater1_ctl01_label3").text
+light2_Powerstate = soup.find(id="ctl00_ContentPlaceHolder1_Repeater1_ctl02_label3").text
+light3_Powerstate = soup.find(id="ctl00_ContentPlaceHolder1_Repeater1_ctl03_label3").text
+light4_Powerstate = soup.find(id="ctl00_ContentPlaceHolder1_Repeater1_ctl04_label3").text
 
 allState = {
     "1" : light1_Powerstate,
@@ -42,7 +42,7 @@ allState = {
 
 allStateJson = json.dumps(allState)
 
-#print allStateJson
+print allStateJson
 
 elementLight1_0 = driver.find_element_by_xpath('//*[@id="ctl00_ContentPlaceHolder1_Repeater1_ctl03_tr"]')
 

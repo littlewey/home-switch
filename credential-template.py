@@ -1,2 +1,3 @@
-user     = "userHere"
-password = "passwordHere"
+user     = ""
+password = ""
+fqdn     = ""
