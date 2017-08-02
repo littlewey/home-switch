@@ -4,11 +4,12 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import time
 from bs4 import BeautifulSoup
 from credential import *
+from config import *
 
 dcap = dict(DesiredCapabilities.PHANTOMJS)
 dcap["phantomjs.page.settings.userAgent"] = ("Mozilla/5.0 (X11; CrOS x86_64 9460.73.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.134 Safari/537.36")
 
-driver = webdriver.PhantomJS(desired_capabilities=dcap)
+driver = webdriver.PhantomJS(desired_capabilities=dcap, service_log_path=phantomjsLogPath)
 
 driver.set_window_size(1024, 768)
 driver.get('http://www.puxiangdao.cn/Resident/')
@@ -43,7 +44,7 @@ elementLight1_0 = driver.find_element_by_xpath('//*[@id="ctl00_ContentPlaceHolde
 elementLight1_0.click()
 
 
-elementLight1_1 = driver.find_element_by_xpath("//*[@id='ctl00_ContentPlaceHolder1_iBtn_Light_On']")
+elementLight1_1 = driver.find_element_by_xpath("//*[@id='ctl00_ContentPlaceHolder1_iBtn_Light_Off']")
 elementLight1_1.click()
 
 #driver.save_screenshot('testing.png')
