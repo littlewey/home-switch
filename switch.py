@@ -13,6 +13,7 @@ dcap["phantomjs.page.settings.userAgent"] = (userAgent)
 
 def loginSession(driver = None):
     if driver == None:
+        print "driver is None"
         driver = webdriver.PhantomJS(desired_capabilities=dcap, service_log_path=phantomjsLogPath)
         driver.set_window_size(1024, 768)
     driver.get(url_initial)
@@ -30,8 +31,8 @@ def loginSession(driver = None):
 def statusParser(driver):
     statusHtml = driver.page_source
     soup = BeautifulSoup(statusHtml,"html.parser")
-    driver.save_screenshot('testing.png')
-    print soup.text
+    #driver.save_screenshot('testing.png')
+    #print soup.text
     light1_Powerstate = soup.find(id="ctl00_ContentPlaceHolder1_Repeater1_ctl01_label3").text
     light2_Powerstate = soup.find(id="ctl00_ContentPlaceHolder1_Repeater1_ctl02_label3").text
     light3_Powerstate = soup.find(id="ctl00_ContentPlaceHolder1_Repeater1_ctl03_label3").text
@@ -58,28 +59,36 @@ def statusParser(driver):
             ]
     #allStateJson = json.dumps(allState)
     #print allStateJson
-    return statusList
-
+    print "statusParser finished"
+    return {
+            "statusList": statusList,
+            "driver"    : driver
+            }
+# flask call this
 def statusPull():
     driver = loginSession()
-    statusList = statusParser(driver)
+    statusList = statusParser(driver)["statusList"]
     return statusList
 
 def pressSwitchButton(lightID,actionInt,driver=None):
     if driver == None:
         driver = loginSession()
-    xpath = '//*[@id="ctl00_ContentPlaceHolder1_Repeater1_ctl0' + str(lightID) + '3_tr"]'
+    xpath = '//*[@id="ctl00_ContentPlaceHolder1_Repeater1_ctl0' + str(lightID) + '_tr"]'
     elementLightClickStep0 = driver.find_element_by_xpath(xpath)
     elementLightClickStep0.click()
     #driver.save_screenshot('testing.png')
     #actionInt is 0 or 1 int
     xpath = "//*[@id='ctl00_ContentPlaceHolder1_iBtn_Light_O" + ("n" if actionInt else "ff") + "']"
+    print xpath
     elementLight1_1 = driver.find_element_by_xpath(xpath)
     elementLight1_1.click()
     #driver.save_screenshot('testing.png')
+# flask call this
 def switchLight(lightID,action):
     action = 0 if action[1] == "F" else 1
     driver = loginSession()
-    status = statusParser(driver)[lightID]
+    statusParsed = statusParser(driver)
+    status = statusParsed["statusList"][lightID]
+    driver = statusParsed["driver"]
     if action != status:
         pressSwitchButton(lightID,action,driver)
