@@ -73,7 +73,7 @@ $ sudo apt -f install
     "http_method": "GET",
     "on_url":      "http://localhost/homeswitch/refresh",
     "off_url":     "http://localhost/homeswitch/refresh",
-    "status_url":  "http://localhost/homeswitch/refresh",
+    "status_url":  "http://localhost/homeswitch/refreshStatus",
     "status_on": "ON",
     "status_off": "OFF",
     "service": "Light",
