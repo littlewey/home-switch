@@ -55,3 +55,16 @@ elementLight1_1.click()
 
 #driver.save_screenshot('testing.png')
 
+
+driver.get(url_status)
+
+elementLight1_0 = driver.find_element_by_xpath('//*[@id="ctl00_ContentPlaceHolder1_Repeater1_ctl02_tr"]')
+
+elementLight1_0.click()
+
+
+#driver.save_screenshot('testing.png')
+elementLight1_1 = driver.find_element_by_xpath("//*[@id='ctl00_ContentPlaceHolder1_iBtn_Light_On']")
+elementLight1_1.click()
+
+
