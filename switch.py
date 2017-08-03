@@ -73,14 +73,20 @@ def statusPull():
 def pressSwitchButton(lightID,actionInt,driver=None):
     if driver == None:
         driver = loginSession()
+    driver.implicitly_wait(3) 
+    time.sleep(1)
     xpath = '//*[@id="ctl00_ContentPlaceHolder1_Repeater1_ctl0' + str(lightID) + '_tr"]'
     elementLightClickStep0 = driver.find_element_by_xpath(xpath)
     elementLightClickStep0.click()
-    #driver.save_screenshot('testing.png')
+    #driver.save_screenshot('testing0.png')
+    time.sleep(1)
     #actionInt is 0 or 1 int
     xpath = "//*[@id='ctl00_ContentPlaceHolder1_iBtn_Light_O" + ("n" if actionInt else "ff") + "']"
     print xpath
     elementLight1_1 = driver.find_element_by_xpath(xpath)
+    
+    #driver.save_screenshot('testing1.png')
+    time.sleep(2)
     elementLight1_1.click()
     #driver.save_screenshot('testing.png')
 # flask call this

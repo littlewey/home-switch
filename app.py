@@ -16,6 +16,7 @@ status = [
 @app.route('/homeswitch/status/<int:device_id>', methods=['GET'])
 def get_status(device_id):
     #every <intervalMinute> login for polling status while only create new session from 0 to 12 second to reduce multiple sessions
+    print str( (datetime.datetime.now().minute - startMinute) % intervalMinute) 
     if (datetime.datetime.now().minute - startMinute) % intervalMinute == 0 and datetime.datetime.now().second < 12:
         newStatus = statusPull()
         for n in range(2,5):
@@ -29,4 +30,4 @@ def qurey_action(device_id,action):
     return str(status[device_id])
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,host="0.0.0.0")
