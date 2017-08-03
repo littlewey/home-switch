@@ -13,9 +13,16 @@ status = [
     0
 ]
 
+initFlag = [0]
+
 @app.route('/homeswitch/status/<int:device_id>', methods=['GET'])
 def get_status(device_id):
     #every <intervalMinute> login for polling status while only create new session from 0 to 12 second to reduce multiple sessions
+    if initFlag[0] == 0:
+        newStatus = statusPull()
+        for n in range(2,5):
+            status[n] = newStatus[n]
+        initFlag[0] = 1
     print str( (datetime.datetime.now().minute - startMinute) % intervalMinute) 
     if (datetime.datetime.now().minute - startMinute) % intervalMinute == 0 and datetime.datetime.now().second < 12:
         newStatus = statusPull()
