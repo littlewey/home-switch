@@ -1,0 +1,4 @@
+--index http://mirrors.aliyun.com/pypi/simple
+Flask==0.10.1
+selenium==3.4.3
+bs4==0.0.1
