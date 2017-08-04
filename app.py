@@ -24,7 +24,7 @@ def get_status(device_id):
             status[n] = newStatus[n]
         initFlag[0] = 1
     print str( (datetime.datetime.now().minute - startMinute) % intervalMinute) 
-    if (datetime.datetime.now().minute - startMinute) % intervalMinute == 0 and datetime.datetime.now().second < 12:
+    if (datetime.datetime.now().minute - startMinute) % intervalMinute == 0 and datetime.datetime.now().second < 2:
         newStatus = statusPull()
         for n in range(2,5):
             status[n] = newStatus[n]
