@@ -2,3 +2,4 @@ credential.py
 *.log
 *.pyc
 *.png
+docker-home-switch/images/*

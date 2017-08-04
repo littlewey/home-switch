@@ -1,0 +1,7 @@
+docker-resource/.gi*
+docker-resource/*.png
+docker-resource/*.log
+docker-resource/*.md
+docker-resource/*.pyc
+docker-resource/docker*
+
