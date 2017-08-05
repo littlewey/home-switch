@@ -3,6 +3,7 @@ credential.py
 *.pyc
 *.png
 docker-home-switch/images/*
+docker-home-switch/docker-resource/*
 .DS_Store
 */.DS_Store
 */*/.DS_Store
