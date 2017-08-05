@@ -2,7 +2,7 @@
 ```
 $ build.sh
 $ run.sh
-$ deploy.sh
+$ export.sh
 
 // transfer output image to Synology
 $ ssh <Synology>
