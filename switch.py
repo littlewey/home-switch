@@ -83,11 +83,11 @@ def pressSwitchButton(lightID,actionInt,driver=None):
     #actionInt is 0 or 1 int
     xpath = "//*[@id='ctl00_ContentPlaceHolder1_iBtn_Light_O" + ("n" if actionInt else "ff") + "']"
     print xpath
-    elementLight1_1 = driver.find_element_by_xpath(xpath)
+    elementLightClickStep1 = driver.find_element_by_xpath(xpath)
     
     #driver.save_screenshot('testing1.png')
     time.sleep(2)
-    elementLight1_1.click()
+    elementLightClickStep1.click()
     #driver.save_screenshot('testing.png')
 # flask call this
 def switchLight(lightID,action):
